@@ -34,6 +34,20 @@ const TodoPage = () => {
     }))
   }
 
+  const handleSaveEdit = (id, editValue) => {
+    if (!editValue) {
+      return;
+    }
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        todo.editMode = !todo.editMode;
+        todo.text = editValue;
+      }
+      return todo;
+    }))
+
+  }
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSave();
@@ -54,13 +68,15 @@ const TodoPage = () => {
       <button onClick={handleSave}>Save</button>
       {todos.map((todo) => {
         return (
-          <TodoItem 
+          <TodoItem
             key={todo.id}
-            todo={todo} 
-            handleDelete={handleDelete} 
+            todo={todo}
+            handleDelete={handleDelete}
             handleEdit={handleEdit}
+            handleSaveEdit={handleSaveEdit}
           />
-        )}
+        )
+      }
       )}
     </div>
   );

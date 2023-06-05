@@ -29,13 +29,17 @@
   border: 1px solid blue;
 }
 
-.saveButton {
-  width: 90px;
-  height: 35px;
-  background-color: green;
-  border-radius: 5px;
-  color: white;
-  border: none;
-  outline: none;
+.filterIcon {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.filterIcon:hover {
+  opacity: 0.5;
+}
+
+.filterIcon:active {
+  opacity: 1;
 }

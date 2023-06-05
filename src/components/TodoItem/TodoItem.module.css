@@ -15,26 +15,25 @@
   font-size: 20px;
 }
 
-.editButton {
-  width: 30px;
-  height: 30px;
-  background-color: green;
-  border-radius: 50%;
-  color: white;
-  border: none;
-  outline: none;
+.editIcon {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
-.deleteButton {
-  width: 30px;
-  height: 30px;
-  background-color: red;
-  border-radius: 50%;
-  color: white;
-  border: none;
-  outline: none;
+.deleteIcon {
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  margin-right: 10px;
+}
+
+.linkIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 .saveButton {

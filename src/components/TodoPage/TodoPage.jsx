@@ -3,10 +3,10 @@ import s from './TodoPage.module.css';
 import TodoItem from '../TodoItem/TodoItem.jsx';
 import TopSection from '../TopSection/TopSection';
 import Popup from '../Popup/Popup';
-import Filter from '../Filter/Filter';
 
 const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
+  const [searchValue, setSearchValue] = useState('');
   const [todos, setTodos] = useState([]);
   const [filterMode, setFilterMode] = useState(false);
 
@@ -22,6 +22,8 @@ const TodoPage = () => {
     }
     console.log(todos);
   }
+
+  const filteredTodos = todos.filter(todo => todo.text.includes(searchValue));
 
   const handleDelete = (id) => {
     setTodos(todos.filter(todo => todo.id !== id))
@@ -51,18 +53,24 @@ const TodoPage = () => {
     }))
   }
 
+  const changeFilterMode = () => {
+    console.log(filterMode);
+    setFilterMode(!filterMode);
+  }
+
   return (
     <div className={s.app}>
       <TopSection
         todos={todos}
         inputValue={inputValue}
         setInputValue={setInputValue}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
         handleSave={handleSave}
+        changeFilterMode={changeFilterMode}
+        filterMode={filterMode}
       />
-      <Filter 
-        setFilterMode={setFilterMode} 
-      />
-      {todos.map((todo) => {
+      {filterMode ? (filteredTodos.map((todo) => {
         return (
           <TodoItem
             key={todo.id}
@@ -73,8 +81,19 @@ const TodoPage = () => {
           />
         )
       }
-      )}
-      <Popup />
+      )) : (todos.map((todo) => {
+        return (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+            handleSaveEdit={handleSaveEdit}
+          />
+        )
+      }
+      ))
+      }
     </div>
   );
 };

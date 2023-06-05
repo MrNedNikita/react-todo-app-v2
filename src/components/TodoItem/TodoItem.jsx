@@ -1,5 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import s from './TodoItem.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import Button from '../Button/Button';
+import Input from '../Input/Input';
 
 const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit }) => {
   const [editValue, setEditValue] = useState(todo.text);
@@ -13,40 +19,36 @@ const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit }) => {
   return (
     <div className={s.container}>
       {todo.editMode
-        ? 
+        ?
         <>
-          <input 
-            type="text" 
-            value={editValue} 
-            className={s.editInput}
-            onChange={(e) => setEditValue(e.target.value)}
+          <Input 
+            value={editValue}
+            onChange={setEditValue}
             onKeyDown={handleKeyDown}
           />
-          <div>
-            <button
-              className={s.saveButton}
-              onClick={() => handleSaveEdit(todo.id, editValue)}
-            >
-              Save
-            </button>
-          </div>
+          <Button 
+            text="Save"
+            onClick={() => handleSaveEdit(todo.id, editValue)}
+          />
         </>
         :
         <>
           <span className={s.text}>{todo.text}</span>
           <div>
-            <button
-              className={s.editButton}
+            <FontAwesomeIcon
+              icon={faArrowUpRightFromSquare}
+              className={s.linkIcon}
+            />
+            <FontAwesomeIcon 
+              icon={faPenToSquare} 
+              className={s.editIcon}
               onClick={() => handleEdit(todo.id)}
-            >
-              Ed
-            </button>
-            <button
-              className={s.deleteButton}
+            />
+            <FontAwesomeIcon
+              icon={faTrash}
+              className={s.deleteIcon}
               onClick={() => handleDelete(todo.id)}
-            >
-              Del
-            </button>
+            />
           </div>
         </>
       }

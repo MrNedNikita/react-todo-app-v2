@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import s from './TodoPage.module.css';
+import TodoItem from '../TodoItem/TodoItem.jsx';
 
 const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
@@ -16,6 +18,10 @@ const TodoPage = () => {
     console.log(todos);
   }
 
+  const handleDelete = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id))
+  }
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSave();
@@ -23,19 +29,24 @@ const TodoPage = () => {
   }
 
   return (
-    <div>
-      <h1>Todo Form</h1>
+    <div className={s.app}>
+      <h1 className={s.header}>Todo List: {todos.length}</h1>
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Enter Todo"
+        className='todo__input'
       />
       <button onClick={handleSave}>Save</button>
       {todos.map((todo) => {
         return (
-          <span className='todo__item-text' key={todo.id}>{todo.text}</span>
+          <TodoItem 
+            key={todo.id}
+            todo={todo} 
+            handleDelete={handleDelete} 
+          />
         )}
       )}
     </div>

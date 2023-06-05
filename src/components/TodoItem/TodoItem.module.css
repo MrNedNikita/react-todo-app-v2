@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 400px;
+  height: 40px;
+  background-color: antiquewhite;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 20px;
+}
+
+.editButton {
+  width: 30px;
+  height: 30px;
+  background-color: green;
+  border-radius: 50%;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.deleteButton {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

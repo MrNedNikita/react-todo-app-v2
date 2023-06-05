@@ -5,6 +5,7 @@ import TodoItem from '../TodoItem/TodoItem.jsx';
 const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
+  const [editMode, setEditMode] = useState(false);
 
   const handleSave = () => {
     if (inputValue) {
@@ -20,6 +21,16 @@ const TodoPage = () => {
 
   const handleDelete = (id) => {
     setTodos(todos.filter(todo => todo.id !== id))
+  }
+
+  const handleEdit = (id) => {
+    console.log('edit', id);
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        todo.text = inputValue;
+      }
+      return todo;
+    }))
   }
 
   const handleKeyDown = (e) => {
@@ -46,6 +57,7 @@ const TodoPage = () => {
             key={todo.id}
             todo={todo} 
             handleDelete={handleDelete} 
+            handleEdit={handleEdit}
           />
         )}
       )}

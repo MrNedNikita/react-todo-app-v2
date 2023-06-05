@@ -1,15 +1,24 @@
 import React from 'react';
+import s from './TodoItem.module.css';
 
-const TodoItem = ({ todo, handleDelete }) => {
+const TodoItem = ({ todo, handleDelete, handleEdit }) => {
   return (
-    <div className='todo__item-container'>
-      <span className='todo__item-text'>{todo.text}</span>
-      <button
-        className='todo__item-delete'
-        onClick={() => handleDelete(todo.id)}
-      >
-        Delete
-      </button>
+    <div className={s.container}>
+      <span className={s.text}>{todo.text}</span>
+      <div>
+        <button 
+          className={s.editButton}
+          onClick={() => handleEdit(todo.id)}
+        >
+          Ed
+        </button>
+        <button
+          className={s.deleteButton}
+          onClick={() => handleDelete(todo.id)}
+        >
+          Del
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import s from './TodoPage.module.css';
 import TodoItem from '../TodoItem/TodoItem.jsx';
+import TopSection from '../TopSection/TopSection';
+import Popup from '../Popup/Popup';
+import Filter from '../Filter/Filter';
 
 const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
+  const [filterMode, setFilterMode] = useState(false);
 
   const handleSave = () => {
     if (inputValue) {
@@ -45,27 +49,19 @@ const TodoPage = () => {
       }
       return todo;
     }))
-
-  }
-
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      handleSave();
-    }
   }
 
   return (
     <div className={s.app}>
-      <h1 className={s.header}>Todo List: {todos.length}</h1>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Enter Todo"
-        className='todo__input'
+      <TopSection
+        todos={todos}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        handleSave={handleSave}
       />
-      <button onClick={handleSave}>Save</button>
+      <Filter 
+        setFilterMode={setFilterMode} 
+      />
       {todos.map((todo) => {
         return (
           <TodoItem
@@ -78,6 +74,7 @@ const TodoPage = () => {
         )
       }
       )}
+      <Popup />
     </div>
   );
 };

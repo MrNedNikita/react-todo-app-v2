@@ -5,13 +5,13 @@ import TodoItem from '../TodoItem/TodoItem.jsx';
 const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [todos, setTodos] = useState([]);
-  const [editMode, setEditMode] = useState(false);
 
   const handleSave = () => {
     if (inputValue) {
       const newTodo = {
         id: new Date().getTime(),
         text: inputValue,
+        editMode: false,
       }
       setTodos([newTodo, ...todos])
       setInputValue('');
@@ -27,6 +27,7 @@ const TodoPage = () => {
     console.log('edit', id);
     setTodos(todos.map(todo => {
       if (todo.id === id) {
+        todo.editMode = !todo.editMode;
         todo.text = inputValue;
       }
       return todo;

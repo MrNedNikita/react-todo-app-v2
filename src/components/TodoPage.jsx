@@ -35,7 +35,7 @@ const TodoPage = () => {
       <button onClick={handleSave}>Save</button>
       {todos.map((todo) => {
         return (
-          <div key={todo.id}>{todo.text}</div>
+          <span className='todo__item-text' key={todo.id}>{todo.text}</span>
         )}
       )}
     </div>

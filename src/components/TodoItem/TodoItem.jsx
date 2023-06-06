@@ -7,10 +7,8 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import { NavLink } from 'react-router-dom';
-import TodoPage from '../TodoPage/TodoPage';
-import { Route } from 'react-router-dom';
 
-const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit }) => {
+const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit, pageMode }) => {
   const [editValue, setEditValue] = useState(todo.text);
 
   const handleKeyDown = (e) => {
@@ -37,30 +35,27 @@ const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit }) => {
         :
         <>
           <span className={s.text}>{todo.text}</span>
-          <div>
-            {/* <Route exact path='/todo/:id' render={() => <myComponent prop={todo} />}>
+          {!pageMode ? (
+            <div>
+              <NavLink to={`/todo/${todo.id}`} state={{ todo }}>
+                <FontAwesomeIcon
+                  icon={faArrowUpRightFromSquare}
+                  className={s.linkIcon}
+                />
+              </NavLink>
               <FontAwesomeIcon
-                icon={faArrowUpRightFromSquare}
-                className={s.linkIcon}
+                icon={faPenToSquare}
+                className={s.editIcon}
+                onClick={() => handleEdit(todo.id)}
               />
-            </Route> */}
-            <NavLink to={`/todo/${todo.id}`} state={{todo}}>
               <FontAwesomeIcon
-                icon={faArrowUpRightFromSquare}
-                className={s.linkIcon}
+                icon={faTrash}
+                className={s.deleteIcon}
+                onClick={() => handleDelete(todo.id)}
               />
-            </NavLink>
-            <FontAwesomeIcon
-              icon={faPenToSquare}
-              className={s.editIcon}
-              onClick={() => handleEdit(todo.id)}
-            />
-            <FontAwesomeIcon
-              icon={faTrash}
-              className={s.deleteIcon}
-              onClick={() => handleDelete(todo.id)}
-            />
-          </div>
+            </div>
+          ) : null }
+
         </>
       }
     </div>

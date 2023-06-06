@@ -41,7 +41,7 @@
 
 .modalHeader {
   border-bottom: 1px solid #dbdbdb;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .modalFooter {

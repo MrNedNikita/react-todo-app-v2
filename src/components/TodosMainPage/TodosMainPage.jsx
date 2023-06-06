@@ -98,9 +98,8 @@ const TodosMainPage = () => {
       <button onClick={() => setModal(true)}>Open Modal</button>
       <Modal
         isVisible={isModal}
-        title="Modal Title"
+        title="Todo Modal"
         content={<p>Add your content here</p>}
-        footer={<button>Cancel</button>}
         onClose={() => setModal(false)}
 
       />

@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import s from './TodosMainPage.module.css';
 import TodoItem from '../TodoItem/TodoItem.jsx';
 import TopSection from '../TopSection/TopSection';
-import { NavLink } from 'react-router-dom';
+import Modal from '../Modal/Modal';
 
 const TodosMainPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [searchValue, setSearchValue] = useState('');
   const [todos, setTodos] = useState([]);
   const [filterMode, setFilterMode] = useState(false);
+  const [isModal, setModal] = useState(false);
 
   const handleSave = () => {
     if (inputValue) {
@@ -94,6 +95,15 @@ const TodosMainPage = () => {
       }
       ))
       }
+      <button onClick={() => setModal(true)}>Open Modal</button>
+      <Modal
+        isVisible={isModal}
+        title="Modal Title"
+        content={<p>Add your content here</p>}
+        footer={<button>Cancel</button>}
+        onClose={() => setModal(false)}
+
+      />
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './App.module.css';
-import TodoPage from './components/TodoPage/TodoPage';
+import TodosMainPage from './components/TodosMainPage/TodosMainPage';
 
 const App = () => {
   return (
     <div>
-      <TodoPage className={s.app} />
+      <TodosMainPage className={s.app} />
     </div>
   );
 };

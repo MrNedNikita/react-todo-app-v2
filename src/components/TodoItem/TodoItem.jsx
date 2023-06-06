@@ -6,6 +6,9 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import { NavLink } from 'react-router-dom';
+import TodoPage from '../TodoPage/TodoPage';
+import { Route } from 'react-router-dom';
 
 const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit }) => {
   const [editValue, setEditValue] = useState(todo.text);
@@ -21,12 +24,12 @@ const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit }) => {
       {todo.editMode
         ?
         <>
-          <Input 
+          <Input
             value={editValue}
             onChange={setEditValue}
             onKeyDown={handleKeyDown}
           />
-          <Button 
+          <Button
             text="Save"
             onClick={() => handleSaveEdit(todo.id, editValue)}
           />
@@ -35,12 +38,20 @@ const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit }) => {
         <>
           <span className={s.text}>{todo.text}</span>
           <div>
+            {/* <Route exact path='/todo/:id' render={() => <myComponent prop={todo} />}>
+              <FontAwesomeIcon
+                icon={faArrowUpRightFromSquare}
+                className={s.linkIcon}
+              />
+            </Route> */}
+            <NavLink to={`/todo/${todo.id}`} state={{todo}}>
+              <FontAwesomeIcon
+                icon={faArrowUpRightFromSquare}
+                className={s.linkIcon}
+              />
+            </NavLink>
             <FontAwesomeIcon
-              icon={faArrowUpRightFromSquare}
-              className={s.linkIcon}
-            />
-            <FontAwesomeIcon 
-              icon={faPenToSquare} 
+              icon={faPenToSquare}
               className={s.editIcon}
               onClick={() => handleEdit(todo.id)}
             />

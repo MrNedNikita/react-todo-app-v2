@@ -8,7 +8,7 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 import { NavLink } from 'react-router-dom';
 
-const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit, pageMode }) => {
+const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit, openModal, pageMode }) => {
   const [editValue, setEditValue] = useState(todo.text);
 
   const handleKeyDown = (e) => {
@@ -18,7 +18,7 @@ const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit, pageMode }) 
   }
 
   return (
-    <div className={s.container}>
+    <div className={s.container} >
       {todo.editMode
         ?
         <>
@@ -34,10 +34,12 @@ const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit, pageMode }) 
         </>
         :
         <>
-          <span className={s.text}>{todo.text}</span>
+          <div className={s.textContainer} onClick={openModal}>
+            <span className={s.text}>{todo.text}</span>
+          </div>
           {!pageMode ? (
-            <div>
-              <NavLink to={`/todo/${todo.id}`} state={{ todo }}>
+            <div className={s.buttonsContainer}>
+              <NavLink className={s.navLink} to={`/todo/${todo.id}`} state={{ todo }}>
                 <FontAwesomeIcon
                   icon={faArrowUpRightFromSquare}
                   className={s.linkIcon}
@@ -54,7 +56,7 @@ const TodoItem = ({ todo, handleDelete, handleEdit, handleSaveEdit, pageMode }) 
                 onClick={() => handleDelete(todo.id)}
               />
             </div>
-          ) : null }
+          ) : null}
 
         </>
       }

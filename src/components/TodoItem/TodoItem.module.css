@@ -11,8 +11,26 @@
   margin-bottom: 10px;
 }
 
+.textContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.buttonsContainer {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .text {
   font-size: 20px;
+}
+
+.navLink {
+  color: black;
 }
 
 .editIcon {
@@ -22,6 +40,10 @@
   margin-right: 10px;
 }
 
+.editIcon:hover {
+  color: #1e90ff;
+}
+
 .deleteIcon {
   width: 20px;
   height: 20px;
@@ -29,11 +51,19 @@
   margin-right: 10px;
 }
 
+.deleteIcon:hover {
+  color: red;
+}
+
 .linkIcon {
   width: 20px;
   height: 20px;
   cursor: pointer;
   margin-right: 10px;
+}
+
+.linkIcon:hover {
+  color: #1e90ff;
 }
 
 .saveButton {

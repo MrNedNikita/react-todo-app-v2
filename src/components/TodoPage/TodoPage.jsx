@@ -8,12 +8,10 @@ const TodoPage = () => {
   const location = useLocation();
   const { state } = location;
 
-  const pageMode = true;
-  
   return (
     <div className={s.container}>
       <NavLink className={s.navLink} to='/'>Back to Main Page</NavLink>
-      <TodoItem todo={state.todo} pageMode={pageMode}/>
+      <TodoItem todo={state.todo} pageMode={true}/>
     </div>
   );
 };

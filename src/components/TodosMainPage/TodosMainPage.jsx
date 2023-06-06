@@ -55,7 +55,6 @@ const TodosMainPage = () => {
   };
 
   const changeFilterMode = () => {
-    console.log(filterMode);
     setFilterMode(!filterMode);
   };
 

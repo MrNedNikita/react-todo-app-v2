@@ -13,7 +13,6 @@ const Todo =({ todo, toggleTask, removeTask }) => {
         {todo.task}
       </span>
       <FontAwesomeIcon icon={faTrash} className="item-delete" onClick={() => removeTask(todo.id)} />
-
     </div>
   );
 }

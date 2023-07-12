@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import s from './TodosMainPage.module.css';
 import TodoItem from '../TodoItem/TodoItem.jsx';
 import TopSection from '../TopSection/TopSection';
 import Modal from '../Modal/Modal';
-import ReactDOM from 'react-dom';
 
 const TodosMainPage = () => {
   const [inputValue, setInputValue] = useState('');
@@ -13,6 +12,13 @@ const TodosMainPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
   const handleSave = () => {
     if (inputValue) {
       const newTodo = {
@@ -21,6 +27,7 @@ const TodosMainPage = () => {
         editMode: false,
       };
       setTodos([newTodo, ...todos]);
+      localStorage.setItem('todos', JSON.stringify([newTodo, ...todos]));
       setInputValue('');
     }
   };
@@ -34,8 +41,11 @@ const TodosMainPage = () => {
   const handleEdit = (id) => {
     setTodos(todos.map(todo => {
       if (todo.id === id) {
-        todo.editMode = !todo.editMode;
-        todo.text = inputValue;
+        return {
+          ...todo,
+          editMode: !todo.editMode,
+          text: inputValue
+        };
       }
       return todo;
     }));
@@ -47,8 +57,11 @@ const TodosMainPage = () => {
     }
     setTodos(todos.map(todo => {
       if (todo.id === id) {
-        todo.editMode = !todo.editMode;
-        todo.text = editValue;
+        return {
+          ...todo,
+          editMode: !todo.editMode,
+          text: editValue
+        };
       }
       return todo;
     }));

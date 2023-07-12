@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactDOM } from 'react';
 import s from './TodosMainPage.module.css';
 import TodoItem from '../TodoItem/TodoItem.jsx';
 import TopSection from '../TopSection/TopSection';
@@ -36,6 +36,7 @@ const TodosMainPage = () => {
 
   const handleDelete = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
+    localStorage.setItem('todos', JSON.stringify(todos.filter(todo => todo.id !== id)));
   };
 
   const handleEdit = (id) => {
